@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Real Speed Test</string>
+    <string name="title_activity_toogle_button">ToogleButtonActivity</string>
+</resources>
