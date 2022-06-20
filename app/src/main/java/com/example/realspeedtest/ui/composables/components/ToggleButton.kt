@@ -1,4 +1,4 @@
-package com.example.realspeedtest.ui.composables
+package com.example.realspeedtest.ui.composables.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
@@ -10,10 +10,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.realspeedtest.R
 
 @Composable
 fun ToggleButtonExp() {
@@ -89,7 +87,7 @@ fun ToggleButton(
         contentPadding = PaddingValues(0.dp, 0.dp),
         modifier = modifier
             .padding(0.dp)
-            .height(52.dp)
+            .height(62.dp)
     ) {
         if (options.isEmpty()) {
             return@OutlinedButton
