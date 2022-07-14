@@ -44,7 +44,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        val uploadAddr = "http://speedtest1.flynet.net.br:8080/speedtest/upload.php"
+        val viewModel = SpeedTestViewModel()
+
 
         super.onCreate(savedInstanceState)
         setContent {
@@ -54,12 +55,18 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MyApp()
+                    val instantDownloadRate = viewModel.downloadRate.collectAsState(initial = 0.0)
+                    //MyApp()
+                    Box(modifier = Modifier.fillMaxSize()) {
+                        Text(
+                            text = instantDownloadRate.value.toString(),
+                            fontSize = 62.sp,
+                            modifier = Modifier.align(Alignment.Center)
+                        )
+                    }
                 }
             }
         }
-
-
     }
 
     @Composable
@@ -84,7 +91,6 @@ class MainActivity : ComponentActivity() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-
             ToggleButtonExp()
             Spacer(modifier = Modifier.size(32.dp))
             CircularProgressbar()
@@ -100,7 +106,7 @@ class MainActivity : ComponentActivity() {
         shadowColor: Color = Color.LightGray,
         indicatorThickness: Dp = 24.dp,
         dataUsage: Float = 60f,
-        animationDuration: Int = 1000,
+        animationDuration: Int = 2000,
         dataTextStyle: TextStyle = TextStyle(
             fontFamily = FontFamily(Font(R.font.roboto_bold, FontWeight.Bold)),
             fontSize = MaterialTheme.typography.h3.fontSize
@@ -111,7 +117,7 @@ class MainActivity : ComponentActivity() {
         )
     ) {
 
-        val viewModel = SpeedTestViewModel(this)
+        val viewModel = SpeedTestViewModel()
 
         // It remembers the data usage value
         var dataUsageRemember by remember {
@@ -198,11 +204,11 @@ class MainActivity : ComponentActivity() {
             Spacer(modifier = Modifier.size(32.dp))
 
             ButtonProgressbar() {
-                viewModel.testDownloadSpeed()
+                //viewModel.testDownloadSpeed()
             }
 
             Text(
-                text = "recebendo o state: ${viewModel.state}",
+                text = "recebendo o state",
                 color = Color.White
             )
 
